@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "bc0ecc73-6e23-430b-8700-978c0881eff6",
+		"name": "Authetication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post article",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "76c9e5bd-caaf-4640-9428-ae4537dd4947",
+						"exec": [
+							"var jsonResponse = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set(\"Token\", jsonResponse.token);\r",
+							"// pm.globals.set(\"Token Global\", jsonResponse.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "ebb02302-1c9f-45d6-b70b-98b07795fd8d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"superman@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Article",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "76c9e5bd-caaf-4640-9428-ae4537dd4947",
+						"exec": [
+							"var jsonResponse = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set(\"Token\", jsonResponse.token);\r",
+							"// pm.globals.set(\"Token Global\", jsonResponse.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "3194c74f-b59c-480e-8102-3112850cfed9",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"superman@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/article/create"
+			},
+			"response": []
+		},
+		{
+			"name": "get article",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c3a43c46-0948-4b35-bbc7-b084095c84bc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var jsonResponse = pm.response.json();\r",
+							"pm.collectionVariables.set(\"ResultID\", jsonResponse.result[4].title);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "c469d799-30e9-4957-9713-138a943ae688",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{Token}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{base_url}}/articles"
+			},
+			"response": []
+		},
+		{
+			"name": "get article details",
+			"_postman_id": "b2b6d6ec-da01-47bb-8cd8-e2937fef77f1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{Token}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{base_url}}/article/{{ResultID}}"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "08c86fd1-4cd6-47b1-ada6-1a6875cb2e1b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "355f7c3f-e390-4524-90d1-534ee17ccd2f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "b8ba8318-7fa6-4f81-bd5e-f9bc1878b1d3",
+			"key": "ResultID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "fd7d1357-24ef-4b50-a36c-92567203282d",
+			"key": "Token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
