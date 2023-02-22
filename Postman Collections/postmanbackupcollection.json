@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "840185e4-42c5-47cc-bc6b-74dc538b8324",
+		"name": "jsonServerDummyAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "writePost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "95d0e4f0-1412-45f1-b3e8-8e7d77292f91",
+						"exec": [
+							"var jsonResponse = pm.response.json();\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.collectionVariables.set(\"postID\", jsonResponse.id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "6fd96ff7-6d59-47dc-954a-75e105034e87",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\"title\": \"{{$randomJobTitle}}\", \r\n\"author\": \"{{$randomFullName}}\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "GetPost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb822742-12e2-4149-917f-f7990d35427c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "44806c30-03aa-4870-8d51-ebb8704ac14c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "GetPost Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "98230ccb-d111-43a6-b4e1-b8ca41dea34d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "e9727540-1a67-42f3-9111-7315b18997fe",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/posts/{{postID}}"
+			},
+			"response": []
+		},
+		{
+			"name": "updateRequest",
+			"_postman_id": "379ebca2-9966-4576-bc55-0117710bbaa7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\"title\": \"{{$randomJobTitle}}\", \r\n\"author\":\"{{$randomFullName}}\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/posts/5"
+			},
+			"response": []
+		},
+		{
+			"name": "updateGetRequest",
+			"_postman_id": "5857c368-184c-4631-abd6-390922d03d97",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\"title\": \"{{$randomJobTitle}}\", \r\n\"author\":\"{{$randomFullName}}\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/posts/5"
+			},
+			"response": []
+		},
+		{
+			"name": "updateRequest using patch",
+			"_postman_id": "3ab16b13-0b0f-407a-bed0-20d20171667c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\r\n\"author\":\"{{$randomFullName}}\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/posts/5"
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"_postman_id": "fe655a1c-4e8c-4de4-9983-a42068188e82",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:3000/posts/5"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "c7421f2a-a6b7-4c28-9039-6a75b379342a",
+			"key": "postID",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
